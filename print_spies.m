@@ -1,0 +1,30 @@
+function print_spies(name, A, zL, zU, zLr, zUr, crL, crU, crLr, crUr)
+    fig = figure();
+    spy(A);
+    fig = figure();
+    print(fig, strcat("out/", name, "_spy_A.svg"), "-dsvg");
+    spy(zL);
+    fig = figure();
+    print(fig, strcat("out/", name, "_spy_zL.svg"), "-dsvg");
+    spy(zU);
+    fig = figure();
+    print(fig, strcat("out/", name, "_spy_zU.svg"), "-dsvg");
+    spy(zLr);
+    fig = figure();
+    print(fig, strcat("out/", name, "_spy_zLr.svg"), "-dsvg");
+    spy(zUr);
+    fig = figure();
+    print(fig, strcat("out/", name, "_spy_zUr.svg"), "-dsvg");
+    spy(crL);
+    fig = figure();
+    print(fig, strcat("out/", name, "_spy_crL.svg"), "-dsvg");
+    spy(crU);
+    fig = figure();
+    print(fig, strcat("out/", name, "_spy_crU.svg"), "-dsvg");
+    spy(crLr);
+    fig = figure();
+    print(fig, strcat("out/", name, "_spy_crLr.svg"), "-dsvg");
+    spy(crUr);
+    fig = figure();
+    print(fig, strcat("out/", name, "_spy_crUr.svg"), "-dsvg");
+endfunction

@@ -1,0 +1,13 @@
+Matriz: cavity05
+Ordem do sistema = 1182
+Não nulos = 32632
+
+NO PCD:
+- Norma da solução: 188.599201
+- Resíduo relativo: 1059.081794
+- Número de iterações: 1128.23
+- Tempo de execução: 9.980938s
+- Flag de convergência: -188.599
+
+ILU Zero:
+- Norma da solução: 1.000000
