@@ -5,9 +5,7 @@ function print_text_outputs(filename, A, n, outputs)
     fprintf(f, "Não nulos = %d\n\n", nnz(A));
     for i = 1 : numel(outputs)
         name = outputs{i}{1};
-        printf("%s\n", name);
         result = outputs{i}{2};
-        printf("%d\n", columns(result));
         t = outputs{i}{3};
         fprintf(f, "%s:\n", name);
         fprintf(f, "- Norma da solução: %f\n", norm(result(1), 2));

@@ -1,0 +1,39 @@
+Matriz: cz2548
+Ordem do sistema = 2548
+Não nulos = 25674
+
+NO PCD:
+- Norma da solução: 3.952727
+- Resíduo relativo: -3.953019
+- Número de iterações: -3.95294
+- Tempo de execução: 100.479122s
+- Flag de convergência: -3.95295
+
+ILU Zero:
+- Norma da solução: 3.952728
+- Resíduo relativo: -3.953021
+- Número de iterações: -3.95294
+- Tempo de execução: 3.513392s
+- Flag de convergência: -3.95295
+
+ILU Zero RCM:
+- Norma da solução: 0.000000
+- Resíduo relativo: Inf
+- Número de iterações: 0
+- Tempo de execução: 0.000000s
+- Flag de convergência: -1
+
+ILU Crout:
+- Norma da solução: 3.952728
+- Resíduo relativo: -3.953021
+- Número de iterações: -3.95294
+- Tempo de execução: 0.028549s
+- Flag de convergência: -3.95295
+
+ILU Crout RCM:
+- Norma da solução: 0.000000
+- Resíduo relativo: Inf
+- Número de iterações: 0
+- Tempo de execução: 0.000000s
+- Flag de convergência: -1
+

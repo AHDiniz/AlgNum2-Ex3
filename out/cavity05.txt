@@ -6,8 +6,34 @@ NO PCD:
 - Norma da solução: 188.599201
 - Resíduo relativo: 1059.081794
 - Número de iterações: 1128.23
-- Tempo de execução: 9.980938s
+- Tempo de execução: 10.600989s
 - Flag de convergência: -188.599
 
 ILU Zero:
-- Norma da solução: 1.000000
+- Norma da solução: 0.000000
+- Resíduo relativo: Inf
+- Número de iterações: 0
+- Tempo de execução: 0.000000s
+- Flag de convergência: -1
+
+ILU Zero RCM:
+- Norma da solução: 0.000000
+- Resíduo relativo: Inf
+- Número de iterações: 0
+- Tempo de execução: 0.000000s
+- Flag de convergência: -1
+
+ILU Crout:
+- Norma da solução: 188.599201
+- Resíduo relativo: 1059.081794
+- Número de iterações: 1128.23
+- Tempo de execução: 0.024891s
+- Flag de convergência: -188.599
+
+ILU Crout RCM:
+- Norma da solução: 0.000000
+- Resíduo relativo: Inf
+- Número de iterações: 0
+- Tempo de execução: 0.000000s
+- Flag de convergência: -1
+

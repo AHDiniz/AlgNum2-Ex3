@@ -9,10 +9,15 @@ for i = 1 : 3
     n = rows(A);
     b = ones(n, 1);
 
+    zeroL = []; zeroU = [];
+    zeroLr = []; zeroUr = [];
+    croutL = []; croutU = [];
+    croutLr = []; croutUr = [];
+
     zero_worked = zero_rcm_worked = crout_worked = crout_rcm_worked = 1;
 
     % No preconditioning:
-    nopcd = [[], -1, inf, [], []];
+    nopcd = [[0], -1, inf, [0], [0]];
     nopcd_t = 0;
     if ks{i} == -1
         k_options = [2, 3, 5, 10, 50, 100, 150, 200];
@@ -26,7 +31,7 @@ for i = 1 : 3
     endif
 
     % ILU Zero:
-    zero = [[], -1, inf, [], []];
+    zero = [[0], -1, inf, [0], [0]];
     zero_t = 0;
     try
         ilu_opts.type = "nofill";
@@ -34,12 +39,14 @@ for i = 1 : 3
         tic();
         zero = gmres(A, b, ks{i}, 10e-11, 1000, zL, zU);
         zero_t = toc();
+        zeroL = zL;
+        zeroU = zU;
     catch
         zero_worked = 0;
     end_try_catch
 
     % ILU Zero RCM:
-    zero_rcm = [[], -1, inf, [], []];
+    zero_rcm = [[0], -1, inf, [0], [0]];
     zero_rcm_t = 0;
     try
         perm = symrcm(A);
@@ -51,12 +58,14 @@ for i = 1 : 3
         tic();
         zero_rcm = gmres(R, b, ks{i}, 10e-11, 1000, zLr, zUr);
         zero_rcm_t = toc();
+        zeroLr = zLr;
+        zeroUr = zUr;
     catch
         zero_rcm_worked = 0;
     end_try_catch
 
     % Crout:
-    crout = [[], -1, inf, [], []];
+    crout = [[0], -1, inf, [0], [0]];
     crout_t = 0;
     try
         crout_opts.type = "crout";
@@ -65,12 +74,14 @@ for i = 1 : 3
         tic();
         crout = gmres(A, b, ks{i}, 10e-11, 1000, crL, crU);
         crout_t = toc();
+        croutL = crL;
+        croutU = crU;
     catch
         crout_worked = 0;
     end_try_catch
 
     % Crout RCM:
-    crout_rcm = [[], -1, inf, [], []];
+    crout_rcm = [[0], -1, inf, [0], [0]];
     crout_rcm_t = 0;
     try
         crout_opts.type = "crout";
@@ -83,6 +94,8 @@ for i = 1 : 3
         tic();
         crout_rcm = gmres(A, b, ks{i}, 10e-11, 1000, crLr, crUr);
         crout_rcm_t = toc();
+        croutLr = crLr;
+        croutUr = crUr;
     catch
         crout_rcm_worked = 0;
     end_try_catch
@@ -98,7 +111,6 @@ for i = 1 : 3
     print_text_outputs(name, A, n, outputs);
 
     % Graphics:
-    print_spies(name, A, zL, zU, zLr, zUr, crL, crU, crLr, crUr);
     fig = figure();
     plot(calc_iter(nopcd(4)), log(nopcd(5)));
     if zero_worked
