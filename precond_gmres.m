@@ -1,10 +1,14 @@
 infiles = {"in/cavity05.mat", "in/cz2548.mat", "in/epb3.mat"};
 names = {"cavity05", "cz2548", "epb3"};
-ks = {200, 200, -1};
+ks = {200, 200, 200};
+zero_opts.type = "nofill";
+crout_opts.type = "crout";
+crout_opts.droptol = 10e-4;
+optss = {zero_opts, crout_opts};
 
 for i = 1 : 3
-    load(infiles{i});
-    name = names{i};
+    load(infiles{1});
+    name = names{1};
     A = Problem.A;
     n = rows(A);
     b = ones(n, 1);
@@ -19,16 +23,9 @@ for i = 1 : 3
     % No preconditioning:
     nopcd = [[0], -1, inf, [0], [0]];
     nopcd_t = 0;
-    if ks{i} == -1
-        k_options = [2, 3, 5, 10, 50, 100, 150, 200];
-        nopcd = test_gmres(A, b, k_options, 10e-11, 1000);
-        ks{i} = nopcd(6);
-        nopcd_t = nopcd(7);
-    else
-        tic();
-        nopcd = gmres(A, b, ks{i}, 10e-11, 1000);
-        nopcd_t = toc();
-    endif
+    tic();
+    nopcd = gmres(A, b, ks{i}, 10e-11, 1000);
+    nopcd_t = toc();
 
     % ILU Zero:
     zero = [[0], -1, inf, [0], [0]];
@@ -112,18 +109,18 @@ for i = 1 : 3
 
     % Graphics:
     fig = figure();
-    plot(calc_iter(nopcd(4)), log(nopcd(5)));
+    semilogy(nopcd(5));
     if zero_worked
-        plot(calc_iter(zero(4)), log(zero(5)));
+        semilogy(zero(5));
     endif
     if zero_rcm_worked
-        plot(calc_iter(zero_rcm(4)), log(zero_rcm(5)));
+        semilogy(zero_rcm(5));
     endif
     if crout_worked
-        plot(calc_iter(crout(4)), log(crout(5)));
+        semilogy(crout(5));
     endif
     if crout_rcm_worked
-        plot(calc_iter(crout_rcm(4)), log(crout_rcm(5)));
+        semilogy(crout_rcm(5));
     endif
     title(name);
     xlabel("Iterações");
